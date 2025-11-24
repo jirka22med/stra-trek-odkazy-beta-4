@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Trek Tabulka Odkazů</title>
+    <link rel="icon" href="https://img40.rajce.idnes.cz/d4003/19/19517/19517492_984d6887838eae80a8eb677199393188/images/image_82x82_2.jpg?ver=0" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+    <div class="page-container">
+        <h1>🔡 Hvězdná Databáze Odkazů</h1>
+        
+        <!-- 🚀 NOVÁ SEKCE: NAVIGACE STRÁNEK -->
+        <div class="pages-navigation-section">
+            <div class="pages-header">
+                <h2>📑 Správa Stránek</h2>
+                <div class="add-page-form">
+                    <input 
+                        type="text" 
+                        id="newPageName" 
+                        placeholder="Název nové stránky..." 
+                        maxlength="30"
+                    >
+                    <button id="addPageButton">➕ Vytvořit stránku</button>
+                </div>
+            </div>
+            
+            <!-- TAB NAVIGACE -->
+            <div id="pageTabs" class="page-tabs-container">
+                <div class="page-tab-loading">⏳ Načítám stránky...</div>
+            </div>
+        </div>
+        
+        <!-- PŮVODNÍ FORMULÁŘ PRO PŘIDÁNÍ ODKAZU -->
+        <div class="form-container">
+            <label for="linkName">Název Odkazu</label>
+            <input type="text" id="linkName" placeholder="Např. Starfleet Command" required>
+
+            <label for="linkUrl">URL Adresa</label>
+            <input type="url" id="linkUrl" placeholder="Např. https://www.startrek.com" required>
+        </div>
+
+        <!-- VYHLEDÁVACÍ PANEL -->
+        <div class="search-container">
+            <div class="search-wrapper">
+                <label for="searchInput">🔍 Vyhledat odkaz</label>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Zadej název nebo URL..." 
+                    autocomplete="off"
+                >
+                <button id="clearSearchButton" title="Vymazat vyhledávání">✖️</button>
+            </div>
+            <div id="searchResults" class="search-results">
+                Nalezeno: <span id="searchCount">0</span> odkazů
+            </div>
+        </div> 
+        
+        <div class="tlacitka">
+            <button id="addLinkButton">➕ Přidat odkaz</button>
+            <button id="jirik-manual-opener-btn">📋 Nápověda</button>
+            <button id="clearAllLinksButton">🗑️ VYMAZAT VŠE</button>
+        </div>
+        
+        <div class="table-scroll-wrapper">
+            <table id="linksTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Název odkazu</th>
+                        <th>Adresa (HTTPS)</th>
+                        <th>Akce</th>
+                    </tr>
+                </thead>
+                <tbody id="linksTableBody">
+                    <tr><td colspan="4" style="text-align: center; color: #888;">⏳ Načítám odkazy z Hvězdné databáze...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="copyright-footer">
+        © Všechna práva vyhrazena – Více admirál Jiřík
+    </footer>
+    
+    <div id="syncStatusMessage" class="sync-status-message">
+        Probíhá synchronizace dat...
+    </div>
+
+    <!-- MODAL PRO EDITACI -->
+    <div id="editLinkModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Upravit odkaz</h2>
+            <input type="hidden" id="modalLinkId">
+            
+            <label for="modalLinkName">Název odkazu:</label>
+            <input type="text" id="modalLinkName" placeholder="Např. Starfleet Command" required>
+
+            <label for="modalLinkUrl">URL adresa:</label>
+            <input type="url" id="modalLinkUrl" placeholder="Např. https://www.startrek.com" required>
+
+            <label for="modalPageSelect">Umístění (Stránka):</label>
+            <select id="modalPageSelect">
+                </select>
+
+            <div class="modal-buttons">
+                <button id="saveEditButton">✅ Uložit</button>
+                <button id="cancelEditButton">❌ Zrušit</button>
+            </div>
+        </div>
+    </div>
+      
+    <!-- FIREBASE SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- VLASTNÍ SKRIPTY -->
+    <script src="firebaseLinksFunctions.js"></script>
+    <script src="pagination.js"></script>
+    <script src="links.js"></script>
+    <script src="jirkuv-hlidac.js"></script>
+    <script src="modal.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>
