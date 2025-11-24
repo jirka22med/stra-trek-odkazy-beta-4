@@ -76,6 +76,7 @@ class PaginationManager {
     }
     
     // Vykreslení záložek stránek
+    // Vykreslení záložek stránek - OPRAVENÁ VERZE (Větší klikací plocha)
     renderTabs() {
         if (!this.tabsContainer) return;
         
@@ -97,19 +98,27 @@ class PaginationManager {
             
             tab.innerHTML = `
                 <span class="tab-name">${page.name}</span>
-                <button class="tab-delete" data-page-id="${page.id}" title="Smazat stránku">❌</button>
+                <button class="tab-delete" title="Smazat stránku">❌</button>
             `;
             
-            // Kliknutí na záložku - přepnutí stránky
-            tab.querySelector('.tab-name').addEventListener('click', () => {
+            // 🚀 ZMĚNA: Kliknutí posloucháme na CELÉM tlačítku (tab), ne jen na textu
+            tab.addEventListener('click', (e) => {
+                // Pokud uživatel klikl na křížek (smazat), nespouštíme přepnutí stránky
+                if (e.target.classList.contains('tab-delete') || e.target.closest('.tab-delete')) {
+                    return;
+                }
+                
                 this.switchToPage(page.id);
             });
             
-            // Kliknutí na křížek - smazání stránky
-            tab.querySelector('.tab-delete').addEventListener('click', (e) => {
-                e.stopPropagation();
-                this.deletePage(page.id, page.name);
-            });
+            // Logika pro mazání (zůstává stejná, jen oddělená)
+            const deleteBtn = tab.querySelector('.tab-delete');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Zabrání probublání kliknutí na tab
+                    this.deletePage(page.id, page.name);
+                });
+            }
             
             fragment.appendChild(tab);
         });
