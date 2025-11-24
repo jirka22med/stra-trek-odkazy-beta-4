@@ -11,10 +11,23 @@
 }
 
 body {
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
-    /* background-attachment: fixed; Tuto vlastnost Nyní odstraňujeme! */
+    background-color: #000000;
+      
+    /* SEM DEJ ODKAZ NA TU NOVOU VELKOU TAPETU (1920x1080 nebo 8K) */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://img41.rajce.idnes.cz/d4102/19/19244/19244630_db82ad174937335b1a151341387b7af2/images/image_2560x1440.jpg?ver=0');
+
+    /* ZMĚNA: Pro velké tapety dáme 'cover' */
+    /* Obrázek se roztáhne přesně na celou obrazovku, bez černých okrajů */
+    background-size: cover; 
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+    /* Zbytek zůstává */
     font-family: 'Orbitron', 'Courier New', monospace;
-    color: #00ffff;
+    color: #e0ffff;
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
@@ -29,12 +42,13 @@ body {
 
 h1 {
     text-align: center;
-    color: #00ffff;
+    color: #FF7800;
     padding: 30px 20px;
     font-size: 3em;
     margin-bottom: 5px;
     letter-spacing: 3px;
     margin-top: -50px;
+    font-weight: 900; /* Extra tučné (Black/Heavy) */
 }
 
 .form-container {
@@ -146,11 +160,16 @@ table {
 th, td {
     padding: 12px 15px;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em; /* tůvodní velikost 1em; */
     border: none;
     border-right: 1px solid rgba(0, 255, 255, 0.2);
     font-family: Arial, sans-serif;
     color: #00ffff;
+    /* 🚀 NOVÉ: Ztučnění textu pro lepší čitelnost */
+    font-weight: 900; /* Extra tučné (Black/Heavy) */ 
+    
+    /* Můžeš přidat i jemný stín pod písmo, aby se "odlepilo" od pozadí */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9); /*tůvodní 0, 0, 0, 0.8*/
 }
 
 th:last-child, td:last-child {
@@ -162,10 +181,22 @@ tr:not(:last-child) td {
 }
 
 th {
-    background: rgba(255, 170, 0, 0.6);
-    color: #000;
-    font-weight: bold;
-    border-bottom: 2px solid rgba(255, 170, 0, 0.8);
+    /* 1. Barva pozadí */
+    /* Zvedneme neprůhlednost na 0.85, aby byl text perfektně čitelný i přes křídla */
+    background: rgba(255, 170, 0, 0.85); 
+    
+    /* 2. Text */
+    color: #FF8C00; /* Černá na žluté = maximální kontrast (jako výstražná páska) */
+    font-weight: 900; /* Extra tučné (Black/Heavy) */
+    text-transform: uppercase; /* Všechno velkým písmem - vypadá to technicky */
+    letter-spacing: 2px; /* Rozestupy mezi písmeny */
+    font-size: 1.1em; /* O kousek větší než zbytek */
+    
+    /* 3. Ohraničení */
+    /* Tlustá neonová čára pod hlavičkou */
+    border-bottom: 5px solid #9ACD32; 
+    
+     
 }
 
 tr:hover td {
@@ -846,7 +877,7 @@ tr.hidden-by-search {
 .page-tab.active {
     background: linear-gradient(135deg, rgba(0, 150, 150, 0.8), rgba(0, 100, 100, 0.8));
     border-color: rgba(0, 255, 255, 0.9);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+   /* box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); */
 }
 
 .page-tab.active .tab-name {
