@@ -7,7 +7,7 @@
 [![Status](https://img.shields.io/badge/Status-Online-success?style=for-the-badge)](https://jirka22med.github.io/stra-trek-odkazy-beta-3/)
 [![Version](https://img.shields.io/badge/Version-3.1-blue?style=for-the-badge)](https://github.com)
 
-**🌐 Live Demo:** [https://jirka22med.github.io/stra-trek-odkazy-beta-3/](https://jirka22med.github.io/stra-trek-odkazy-beta-3/)
+**🌐 Live Demo:** [https://jirka22med.github.io/stra-trek-odkazy-beta-3/](https://jirka22med.github.io/stra-trek-odkazy-beta-4/)
 
 ---
 
@@ -37,8 +37,8 @@
 ### 1️⃣ Klonování repozitáře
 
 ```bash
-git clone https://github.com/jirka22med/stra-trek-odkazy-beta-3.git
-cd stra-trek-odkazy-beta-3
+git clone https://github.com/jirka22med/stra-trek-odkazy-beta-4.git
+cd stra-trek-odkazy-beta-4
 ```
 
 ### 2️⃣ Firebase konfigurace
@@ -542,8 +542,8 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 
 **Více admirál Jiřík**  
 🚀 Kapitán hvězdné flotily  
-📡 [GitHub Repository](https://github.com/jirka22med/stra-trek-odkazy-beta-3)  
-🌐 [Live Demo](https://jirka22med.github.io/stra-trek-odkazy-beta-3/)  
+📡 [GitHub Repository](https://github.com/jirka22med/stra-trek-odkazy-beta-4)  
+🌐 [Live Demo](https://jirka22med.github.io/stra-trek-odkazy-beta-4/)  
 🌌 Ostrava, Moravskoslezský kraj, CZ
 
 ---
@@ -1015,7 +1015,7 @@ TODO: Přidat screenshots:
 ## 🔗 Související projekty
 
 Více admirála Jiříka na GitHubu:
-- 🎵 [Star Trek Audio Player v3](https://jirka22med.github.io/-jirka22med-star-trek-audio-player-v.3/)
+- 🎵 [Star Trek Audio Player v3](https://jirka22med.github.io/-jirka22med-star-trek-audio-player-v.4/)
 - 🌌 [Star Trek Universe](https://jirka22med.github.io/star-trek-universe/)
 - 🔲 [QR Kód Generátor](https://jirka22med.github.io/qr-kod-generato-novy/)
 - ⚖️ [Váhový Tracker](https://jirka22med.github.io/jirikuv-vahovy-tracker/)
@@ -1054,9 +1054,9 @@ A: Zatím ne, je to v roadmapě (v4.0). Aktuální design je tmavý s cyan akcen
 
 **Máš otázku? Nápad? Bug report?**
 
-- 📧 Email: [GitHub Issues](https://github.com/jirka22med/stra-trek-odkazy-beta-3/issues)
-- 💬 Diskuze: [GitHub Discussions](https://github.com/jirka22med/stra-trek-odkazy-beta-3/discussions)
-- 🐛 Bug report: [GitHub Issues](https://github.com/jirka22med/stra-trek-odkazy-beta-3/issues/new)
+- 📧 Email: [GitHub Issues](https://github.com/jirka22med/stra-trek-odkazy-beta-4/issues)
+- 💬 Diskuze: [GitHub Discussions](https://github.com/jirka22med/stra-trek-odkazy-beta-4/discussions)
+- 🐛 Bug report: [GitHub Issues](https://github.com/jirka22med/stra-trek-odkazy-beta-4/issues/new)
 
 ---
 
