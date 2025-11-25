@@ -1,4 +1,5 @@
-// search.js - VYHLEDÁVACÍ MODUL PRO HVĚZDNOU DATABÁZI
+// search.js - GLOBÁLNÍ VYHLEDÁVÁNÍ (Deep Space Scan)
+// Verze 2.0 - Prohledává celou databázi napříč všemi stránkami
 
 class SearchManager {
     constructor() {
@@ -8,7 +9,11 @@ class SearchManager {
         this.linksTableBody = document.getElementById('linksTableBody');
         
         this.currentSearchTerm = '';
-        this.allRows = [];
+        this.isSearching = false;
+        
+        // Cache pro data
+        this.allLinksCache = [];
+        this.allPagesCache = [];
         
         this.init();
     }
@@ -22,7 +27,11 @@ class SearchManager {
         // Real-time vyhledávání při psaní
         this.searchInput.addEventListener('input', (e) => {
             this.currentSearchTerm = e.target.value.trim();
-            this.performSearch();
+            if (this.currentSearchTerm.length > 0) {
+                this.performGlobalSearch();
+            } else {
+                this.clearSearch();
+            }
         });
         
         // Vymazání vyhledávání
@@ -37,183 +46,138 @@ class SearchManager {
             }
         });
         
-        console.log("✅ Vyhledávací modul inicializován");
+        console.log("✅ Vyhledávací modul 2.0 (Globální) inicializován");
     }
     
-    // Hlavní vyhledávací funkce
-    performSearch() {
+    // 🚀 HLAVNÍ FUNKCE: Globální vyhledávání
+    async performGlobalSearch() {
+        this.isSearching = true;
         const searchTerm = this.currentSearchTerm.toLowerCase();
         
-        // Získáme všechny řádky tabulky
-        this.allRows = Array.from(this.linksTableBody.querySelectorAll('tr'));
-        
-        if (searchTerm === '') {
-            // Pokud je vyhledávání prázdné, zobraz vše
-            this.showAllRows();
-            this.updateSearchCount(this.allRows.length);
-            return;
+        // 1. Načteme VŠECHNA data (pokud je ještě nemáme)
+        // Využijeme existující funkce z firebaseLinksFunctions.js
+        if (this.allLinksCache.length === 0 || !this.allPagesCache.length) {
+            console.log("📡 Skenuji celou databázi pro vyhledávání...");
+            this.allLinksCache = await window.getLinksFromFirestore();
+            this.allPagesCache = await window.getPagesFromFirestore();
         }
-        
-        let visibleCount = 0;
-        
-        this.allRows.forEach(row => {
-            // Přeskočíme řádky s prázdným stavem nebo loading
-            const firstCell = row.querySelector('td');
-            if (!firstCell || firstCell.colSpan > 1) {
-                row.classList.add('hidden-by-search');
-                return;
-            }
-            
-            // Získáme data z řádku
-            const cells = row.querySelectorAll('td');
-            if (cells.length < 3) {
-                row.classList.add('hidden-by-search');
-                return;
-            }
-            
-            const linkName = cells[1].textContent.toLowerCase();
-            const linkUrlButton = cells[2].querySelector('.url-button');
-            const linkUrl = linkUrlButton ? linkUrlButton.dataset.url.toLowerCase() : '';
-            
-            // Kontrola shody
-            const nameMatch = linkName.includes(searchTerm);
-            const urlMatch = linkUrl.includes(searchTerm);
-            
-            if (nameMatch || urlMatch) {
-                // Zobrazíme řádek
-                row.classList.remove('hidden-by-search');
-                visibleCount++;
-                
-                // Zvýrazníme shody
-                this.highlightMatches(cells[1], searchTerm, linkName);
-                if (linkUrlButton) {
-                    this.highlightButtonText(linkUrlButton, searchTerm, linkUrl);
-                }
-            } else {
-                // Skryjeme řádek
-                row.classList.add('hidden-by-search');
-                // Odstraníme zvýraznění
-                this.removeHighlights(cells[1]);
-                if (linkUrlButton) {
-                    linkUrlButton.textContent = 'Odkaz';
-                }
-            }
+
+        // 2. Filtrování výsledků
+        const results = this.allLinksCache.filter(link => {
+            const nameMatch = link.name.toLowerCase().includes(searchTerm);
+            const urlMatch = link.url.toLowerCase().includes(searchTerm);
+            return nameMatch || urlMatch;
         });
-        
-        this.updateSearchCount(visibleCount);
+
+        // 3. Vykreslení výsledků
+        this.renderSearchResults(results, searchTerm);
     }
     
-    // Zvýraznění textu v buňce
-    highlightMatches(cell, searchTerm, originalText) {
-        if (!cell || !searchTerm) return;
+    // Vykreslení tabulky s výsledky
+    renderSearchResults(results, searchTerm) {
+        if (!this.linksTableBody) return;
         
-        const index = originalText.indexOf(searchTerm);
-        if (index === -1) {
-            cell.innerHTML = cell.textContent;
+        this.linksTableBody.innerHTML = '';
+        this.updateSearchCount(results.length);
+
+        if (results.length === 0) {
+            this.linksTableBody.innerHTML = `
+                <tr>
+                    <td colspan="4" style="text-align: center; color: #ffaa00; padding: 20px;">
+                        ⚠️ Žádný záznam nenalezen pro: "<strong>${this.escapeHtml(searchTerm)}</strong>"
+                    </td>
+                </tr>`;
             return;
         }
-        
-        // Získáme původní text (bez HTML)
-        const text = cell.textContent;
-        const startIndex = text.toLowerCase().indexOf(searchTerm);
-        
-        if (startIndex === -1) {
-            return;
-        }
-        
-        const before = text.substring(0, startIndex);
-        const match = text.substring(startIndex, startIndex + searchTerm.length);
-        const after = text.substring(startIndex + searchTerm.length);
-        
-        cell.innerHTML = `${this.escapeHtml(before)}<span class="highlight">${this.escapeHtml(match)}</span>${this.escapeHtml(after)}`;
-    }
-    
-    // Zvýraznění v tlačítku URL
-    highlightButtonText(button, searchTerm, url) {
-        if (!button) return;
-        
-        if (url.includes(searchTerm)) {
-            button.textContent = '🔍 Shoda';
-            button.style.background = 'linear-gradient(135deg, #aa7700, #ffaa00)';
-        } else {
-            button.textContent = 'Odkaz';
-            button.style.background = '';
-        }
-    }
-    
-    // Odstranění zvýraznění
-    removeHighlights(cell) {
-        if (!cell) return;
-        cell.innerHTML = cell.textContent;
-    }
-    
-    // Zobrazení všech řádků
-    showAllRows() {
-        this.allRows.forEach(row => {
-            row.classList.remove('hidden-by-search');
+
+        const fragment = document.createDocumentFragment();
+
+        results.forEach((link, index) => {
+            // Zjistíme název stránky, kam odkaz patří
+            const sourcePage = this.allPagesCache.find(p => p.id === link.pageId);
+            const pageName = sourcePage ? sourcePage.name : "Nezařazeno";
+
+            const row = document.createElement('tr');
+            row.dataset.linkId = link.id;
             
-            const cells = row.querySelectorAll('td');
-            if (cells.length >= 2) {
-                this.removeHighlights(cells[1]);
-            }
-            
-            const urlButton = row.querySelector('.url-button');
-            if (urlButton) {
-                urlButton.textContent = 'Odkaz';
-                urlButton.style.background = '';
-            }
+            // HTML pro řádek s výsledkem
+            // Přidali jsme malý štítek (span) s názvem stránky pod název odkazu
+            row.innerHTML = `
+                <td style="color: #888;">${index + 1}</td>
+                <td style="text-align: center;">
+                    <div style="font-weight: bold; font-size: 1.1em;">${this.highlightText(link.name, searchTerm)}</div>
+                    <div style="font-size: 0.8em; color: #FF7800; margin-top: 4px; opacity: 0.8;">
+                        📂 Sekce: ${this.escapeHtml(pageName)}
+                    </div>
+                </td>
+                <td><button class="url-button" data-url="${link.url}" title="${link.url}">Odkaz</button></td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="edit-link-button" data-name="${link.name}" data-url="${link.url}">✏️</button>
+                        <button class="delete-link-button">🗑️</button>
+                    </div>
+                </td>
+            `;
+            fragment.appendChild(row);
         });
+
+        this.linksTableBody.appendChild(fragment);
     }
     
-    // Aktualizace počítadla
+    // Zvýraznění hledaného textu (žlutě)
+    highlightText(text, searchTerm) {
+        if (!searchTerm) return text;
+        const regex = new RegExp(`(${this.escapeHtml(searchTerm)})`, 'gi');
+        return this.escapeHtml(text).replace(regex, '<span style="background: rgba(255,255,0,0.3); color: #ffff00;">$1</span>');
+    }
+
+    // Vymazání hledání a návrat na aktuální stránku
+    clearSearch() {
+        this.searchInput.value = '';
+        this.currentSearchTerm = '';
+        this.isSearching = false;
+        
+        // Vyčistíme počítadlo
+        if (this.searchCountElement) this.searchCountElement.textContent = '0';
+        
+        // Invalidujeme cache pro příští hledání (aby byla data čerstvá)
+        this.allLinksCache = [];
+        
+        console.log("🔄 Vyhledávání ukončeno, návrat na stránku.");
+        
+        // Zavoláme PaginationManager, aby obnovil původní zobrazení stránky
+        if (window.paginationManager) {
+            window.paginationManager.loadLinksForCurrentPage();
+        }
+    }
+    
     updateSearchCount(count) {
         if (this.searchCountElement) {
             this.searchCountElement.textContent = count;
         }
     }
     
-    // Vymazání vyhledávání
-    clearSearch() {
-        this.searchInput.value = '';
-        this.currentSearchTerm = '';
-        this.showAllRows();
-        this.updateSearchCount(this.allRows.length);
-        this.searchInput.focus();
-        console.log("🔄 Vyhledávání vymazáno");
-    }
-    
-    // Escape HTML znaků
     escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
+        if (!text) return '';
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
     
-    // Refresh po načtení nových dat
+    // Pomocná metoda pro refresh (pokud je potřeba zvenčí)
     refresh() {
-        if (this.currentSearchTerm) {
-            // Pokud probíhá vyhledávání, znovu aplikuj filtr
-            setTimeout(() => this.performSearch(), 100);
-        } else {
-            // Jinak jen aktualizuj počítadlo
-            this.allRows = Array.from(this.linksTableBody.querySelectorAll('tr'));
-            const validRows = this.allRows.filter(row => {
-                const firstCell = row.querySelector('td');
-                return firstCell && firstCell.colSpan === undefined;
-            });
-            this.updateSearchCount(validRows.length);
+        if (this.isSearching) {
+            this.performGlobalSearch();
         }
     }
 }
 
 // Globální instance
-let searchManager = null;
+window.searchManager = null;
 
-// Inicializace po načtení DOM
 document.addEventListener('DOMContentLoaded', () => {
-    searchManager = new SearchManager();
-    console.log("🔍 Vyhledávací systém aktivován");
+    window.searchManager = new SearchManager();
 });
-
-// Export pro použití v jiných souborech
-window.searchManager = searchManager;
