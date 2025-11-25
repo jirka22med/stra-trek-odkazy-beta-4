@@ -4,7 +4,7 @@
 
 [![Star Trek](https://img.shields.io/badge/Star%20Trek-Theme-00ffff?style=for-the-badge)](https://www.startrek.com)
 [![Firebase](https://img.shields.io/badge/Firebase-Realtime-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com)
-[![Status](https://img.shields.io/badge/Status-Online-success?style=for-the-badge)](https://jirka22med.github.io/stra-trek-odkazy-beta-3/)
+[![Status](https://img.shields.io/badge/Status-Online-success?style=for-the-badge)](https://jirka22med.github.io/stra-trek-odkazy-beta-4/)
 [![Version](https://img.shields.io/badge/Version-3.1-blue?style=for-the-badge)](https://github.com)
 
 **🌐 Live Demo:** [https://jirka22med.github.io/stra-trek-odkazy-beta-3/](https://jirka22med.github.io/stra-trek-odkazy-beta-4/)
