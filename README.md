@@ -81,7 +81,7 @@ Naviguj na `http://localhost:8000`
 ## 📂 Struktura projektu
 
 ```
-stra-trek-odkazy-beta-3/
+stra-trek-odkazy-beta-4/
 │
 ├── index.html                    # Hlavní HTML struktura
 ├── style.css                     # Hlavní styly (tabulka, formuláře)
