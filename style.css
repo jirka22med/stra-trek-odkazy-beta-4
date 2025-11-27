@@ -1,4 +1,4 @@
-/* style.css - OPTIMALIZOVANÝ BEZ EFEKTŮ, ČISTÝ VÝKON */
+/* style.css - FULL PERFORMANCE MODE - ŽÁDNÉ ANIMACE/PŘECHODY */
 
 * {
     -webkit-user-select: none;
@@ -10,8 +10,6 @@
     box-sizing: border-box;
 }
 
-
-
 /* Pozadí s obrázkem */
 .background-image-container {
     position: fixed;
@@ -21,26 +19,19 @@
     height: 100%;
     z-index: -1;
 }
+
 .background-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 1.0;
-     
-    /*toto dektivuje označování obrázku */
-    user-select: none; /* Deaktivuje označování pro všechny prohlížeče */
-    -webkit-user-select: none; /* Pro Safari a Chrome */
-    -moz-user-select: none; /* Pro Firefox */
-    -ms-user-select: none; /* Pro starší verze Internet Exploreru */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 body {
-    
-      
-    /* SEM DEJ ODKAZ NA TU NOVOU VELKOU TAPETU (1920x1080 nebo 8K) */
-    
-
-    /* Zbytek zůstává */
     font-family: 'Orbitron', 'Courier New', monospace;
     color: #e0ffff;
     line-height: 1.6;
@@ -63,7 +54,7 @@ h1 {
     margin-bottom: 5px;
     letter-spacing: 3px;
     margin-top: -50px;
-    font-weight: 900; /* Extra tučné (Black/Heavy) */
+    font-weight: 900;
 }
 
 .form-container {
@@ -114,7 +105,7 @@ h1 {
     gap: 15px;
     justify-content: flex-end;
     align-items: center;
-    width: 100
+    width: 100%;
 }
 
 .form-container button, #clearAllLinksButton {
@@ -142,7 +133,6 @@ h1 {
 #clearAllLinksButton {
     background: rgba(180, 50, 50, 0.6);
     border-color: rgba(255, 100, 100, 0.5);
-     
     margin: 20px auto;
     display: block;
 }
@@ -158,7 +148,6 @@ h1 {
     margin-bottom: 5px;
     border-radius: 12px;
     -webkit-overflow-scrolling: touch;
-    
 }
 
 table {
@@ -175,16 +164,13 @@ table {
 th, td {
     padding: 12px 15px;
     text-align: center;
-    font-size: 1.2em; /* tůvodní velikost 1em; */
+    font-size: 1.2em;
     border: none;
     border-right: 1px solid rgba(0, 255, 255, 0.2);
     font-family: Arial, sans-serif;
     color: #00ffff;
-    /* 🚀 NOVÉ: Ztučnění textu pro lepší čitelnost */
-    font-weight: 900; /* Extra tučné (Black/Heavy) */ 
-    
-    /* Můžeš přidat i jemný stín pod písmo, aby se "odlepilo" od pozadí */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9); /*tůvodní 0, 0, 0, 0.8*/
+    font-weight: 900;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 th:last-child, td:last-child {
@@ -196,24 +182,14 @@ tr:not(:last-child) td {
 }
 
 th {
-    /* 1. Barva pozadí */
-    /* Zvedneme neprůhlednost na 0.85, aby byl text perfektně čitelný i přes křídla */
-    background: rgba(255, 170, 0, 0.85); 
-    
-    /* 2. Text */
-    color: #FF8C00; /* Černá na žluté = maximální kontrast (jako výstražná páska) */
-    font-weight: 900; /* Extra tučné (Black/Heavy) */
-    text-transform: uppercase; /* Všechno velkým písmem - vypadá to technicky */
-    letter-spacing: 2px; /* Rozestupy mezi písmeny */
-    font-size: 1.1em; /* O kousek větší než zbytek */
-    
-    /* 3. Ohraničení */
-    /* Tlustá neonová čára pod hlavičkou */
-    border-bottom: 5px solid #9ACD32; 
-    
-     
+    background: rgba(255, 170, 0, 0.85);
+    color: #FF8C00;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.1em;
+    border-bottom: 5px solid #9ACD32;
 }
-
 
 /* Akční tlačítka v tabulce */
 .action-buttons {
@@ -233,8 +209,6 @@ th {
     color: #00ffff;
 }
 
-
-
 .action-buttons button:active {
     transform: scale(0.95);
 }
@@ -251,6 +225,8 @@ th {
     font-size: 1.2em;
     grid-column: 1 / -1;
 }
+
+.modal-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -335,15 +311,11 @@ th {
     border-color: rgba(0, 255, 150, 0.5);
 }
 
-
-
 #cancelEditButton {
     background: rgba(150, 50, 50, 0.6);
     color: #fff;
     border-color: rgba(255, 100, 100, 0.5);
 }
-
-
 
 .sync-status-message {
     position: fixed;
@@ -366,147 +338,40 @@ th {
     border-color: rgba(255, 100, 100, 0.5);
 }
 
-/* Responzivita */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2em;
-    }
-
-    th, td {
-        padding: 10px 8px;
-        font-size: 0.9em;
-    }
-
-    .action-buttons button {
-        padding: 4px 8px;
-        font-size: 0.9em;
-    }
-
-    .form-container {
-        padding: 20px;
-    }
-
-    .tlacitka {
-        flex-direction: column;
-    }
-
-    .tlacitka button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5em;
-    }
-
-    .page-container {
-        padding: 20px 10px;
-    }
-
-    .form-container {
-        padding: 15px;
-        gap: 15px;
-    }
-
-     /* Zmenšíme číslo sloupec */
-    th:nth-child(1), td:nth-child(1) { 
-        width: 10%; 
-        min-width: 40px;
-        font-size: 0.85em;
-    }
-    
-    /* 🎯 KRITICKÉ: Název odkazu - pevná šířka! */
-    th:nth-child(2), td:nth-child(2) { 
-        width: 30%; 
-        min-width: 100px;
-        max-width: 150px; /* Zamezí roztažení! */
-        word-break: break-word;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 0.85em;
-    }
-    
-    /* Tlačítko Odkaz */
-    th:nth-child(3), td:nth-child(3) { 
-        width: 17%; 
-        min-width: 50px;
-        font-size: 0.85em;
-    }
-    
-    /* Akce tlačítka */
-    th:nth-child(4), td:nth-child(4) { 
-        width: 35%; 
-        min-width: 110px;
-    }
-    
-     
-
-    .action-buttons button {
-        padding: 2px 3px;
-        font-size: 0.7em;
-    }
-
-    .modal-content {
-        width: 95%;
-        padding: 25px;
-    }
-}
-
 .url-button {
-  background: linear-gradient(135deg, #255c9a, #1a3d6b); /* plná modrá výplň */
-  color: #e9f4ff;
-  border: 1px solid #4c6ef5;
-  border-radius: 8px;
-  padding: 6px 14px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 50, 100, 0.25);
+    background: linear-gradient(135deg, #255c9a, #1a3d6b);
+    color: #e9f4ff;
+    border: 1px solid #4c6ef5;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 50, 100, 0.25);
 }
-
-
 
 .url-button:active {
-  background: linear-gradient(135deg, #1d4473, #152f52); /* tmavší při stisku */
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 50, 100, 0.25);
+    background: linear-gradient(135deg, #1d4473, #152f52);
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 50, 100, 0.25);
 }
 
-
- .copyright-footer {
+.copyright-footer {
     text-align: center;
     padding: 30px 20px;
     color: rgba(0, 255, 255, 0.75);
     font-size: 0.9em;
-     
     border-top: 1px solid rgba(0, 255, 255, 0.25);
     text-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4px);
     letter-spacing: 0.05em;
-    animation: holoPulse 7s infinite ease-in-out;
-    transition: all 0.4s ease-in-out;
-}
-
-@keyframes holoPulse {
-    0%, 100% {
-        text-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
-        color: rgba(0, 255, 255, 0.7);
-    }
-    50% {
-        text-shadow: 0 0 14px rgba(0, 255, 255, 1);
-        color: rgba(0, 255, 255, 0.9);
-    }
 }
 
 .copyright-footer:hover {
     color: rgba(0, 255, 255, 1);
     text-shadow: 0 0 14px rgba(0, 255, 255, 1);
-    transform: scale(1.02);
 }
-
 
 .tlacitka {
     display: flex;
@@ -533,74 +398,23 @@ th {
     padding: 10px 25px;
     font-size: 1em;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
-
-
 
 .tlacitka button:active {
     transform: scale(0.97);
 }
 
-
-#addLinkButton, #jirik-manual-opener-btn   {
-width:  200px;
-height: 50px;        
+#addLinkButton, #jirik-manual-opener-btn {
+    width: 200px;
+    height: 50px;
 }
 
-#clearAllLinksButton{
-width:  400px;
-height: 50px;    
-    
+#clearAllLinksButton {
+    width: 400px;
+    height: 50px;
 }
 
-/* Media Query pro mobilní zařízení (maximální šířka obrazovky 600px) */
-@media (max-width: 600px) {
-
-    /* A. Úpravy pro kontejner tlačítek */
-    .tlacitka {
-        /* Povolíme "zalomení" prvků, aby se tlačítka skládala pod sebe, pokud se nevejdou */
-        flex-wrap: wrap; 
-        /* Zmenšení mezery mezi tlačítky */
-        gap: 10px;
-        /* Zmenšení vnitřního odsazení */
-        padding: 15px;
-        /* Snížení pevné výšky, protože se obsah zalomí (height: auto pro dynamickou výšku) */
-        height: auto; 
-        /* Zmenšíme margin pro lepší využití místa */
-        margin: 20px auto; 
-    }
-
-    /* B. Úpravy pro všechna tlačítka, aby byla responzivní */
-    .tlacitka button {
-        /* Zajistíme, že tlačítka využijí celou šířku kontejneru */
-        width: 100%;
-        /* Menší odsazení pro menší velikost */
-        padding: 12px 15px;
-        /* Trochu menší font */
-        font-size: 0.9em;
-    }
-
-    /* C. Specifická úprava pro tlačítka podle ID */
-    /* Zrušíme fixní šířku a výšku, protože používáme 100% šířku z bodu B */
-    #addLinkButton, 
-    #jirik-manual-opener-btn,
-    #clearAllLinksButton {
-        width: 100%; /* Plná šířka */
-        height: auto; /* Dynamická výška */
-    }
-    
-    /* D. Speciální úprava pro "Vymazat Vše", aby bylo zřetelné */
-    #clearAllLinksButton {
-        /* Můžeš mu dát malý margin-top, aby se oddělilo od ostatních */
-        margin-top: 5px; 
-    }
-}
-
-/* ========================================
-   VYHLEDÁVACÍ PANEL - STAR TREK DESIGN
-   ======================================== */
-
+/* VYHLEDÁVACÍ PANEL */
 .search-container {
     background: rgba(20, 30, 60, 0.4);
     border: 2px solid rgba(0, 255, 255, 0.3);
@@ -637,7 +451,6 @@ height: 50px;
     color: #00ffff;
     font-family: 'Courier New', monospace;
     font-size: 1em;
-    transition: all 0.3s ease;
 }
 
 #searchInput:focus {
@@ -659,7 +472,6 @@ height: 50px;
     border-radius: 50%;
     font-size: 1.2em;
     cursor: pointer;
-    transition: all 0.3s ease;
     min-width: 45px;
     height: 45px;
 }
@@ -667,7 +479,6 @@ height: 50px;
 #clearSearchButton:hover {
     background: rgba(200, 80, 80, 0.8);
     border-color: rgba(255, 150, 150, 0.8);
-    transform: scale(1.1);
 }
 
 #clearSearchButton:active {
@@ -691,7 +502,6 @@ height: 50px;
     text-shadow: 0 0 8px rgba(255, 170, 0, 0.6);
 }
 
-/* Zvýraznění nalezených výsledků */
 .highlight {
     background: rgba(255, 255, 0, 0.3);
     color: #ffff00;
@@ -700,41 +510,17 @@ height: 50px;
     border-radius: 3px;
 }
 
-/* Skrytý řádek při vyhledávání */
 tr.hidden-by-search {
     display: none;
 }
 
-/* Responzivita */
-@media (max-width: 768px) {
-    .search-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .search-wrapper label {
-        min-width: auto;
-    }
-    
-    #clearSearchButton {
-        width: 100%;
-        border-radius: 10px;
-    }
-}
-
-
-/* ========================================
-   🚀 STRÁNKOVÁNÍ - STAR TREK DESIGN
-   ======================================== */
-
-/* SEKCE PRO SPRÁVU STRÁNEK */
+/* STRÁNKOVÁNÍ */
 .pages-navigation-section {
     background: rgba(20, 30, 60, 0.4);
     border: 2px solid rgba(0, 255, 255, 0.3);
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 30px;
-    transition: all 0.3s ease;
 }
 
 .pages-navigation-section:hover {
@@ -742,7 +528,6 @@ tr.hidden-by-search {
     background: rgba(20, 30, 60, 0.5);
 }
 
-/* HLAVIČKA SEKCE */
 .pages-header {
     display: flex;
     justify-content: space-between;
@@ -760,7 +545,6 @@ tr.hidden-by-search {
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
-/* FORMULÁŘ PRO NOVOU STRÁNKU */
 .add-page-form {
     display: flex;
     gap: 10px;
@@ -776,7 +560,6 @@ tr.hidden-by-search {
     font-family: 'Courier New', monospace;
     font-size: 0.95em;
     min-width: 200px;
-    transition: all 0.3s ease;
 }
 
 #newPageName:focus {
@@ -799,13 +582,11 @@ tr.hidden-by-search {
     font-size: 0.95em;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 #addPageButton:hover {
     background: linear-gradient(135deg, #00cccc, #009999);
-    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
 }
 
@@ -813,7 +594,6 @@ tr.hidden-by-search {
     transform: scale(0.97);
 }
 
-/* KONTEJNER PRO ZÁLOŽKY STRÁNEK */
 .page-tabs-container {
     display: flex;
     gap: 10px;
@@ -825,7 +605,6 @@ tr.hidden-by-search {
     align-items: center;
 }
 
-/* LOADING STAV */
 .page-tab-loading {
     width: 100%;
     text-align: center;
@@ -834,7 +613,6 @@ tr.hidden-by-search {
     padding: 10px;
 }
 
-/* ŽÁDNÉ STRÁNKY */
 .no-pages {
     width: 100%;
     text-align: center;
@@ -844,7 +622,6 @@ tr.hidden-by-search {
     font-style: italic;
 }
 
-/* JEDNOTLIVÁ ZÁLOŽKA STRÁNKY */
 .page-tab {
     display: flex;
     align-items: center;
@@ -854,22 +631,18 @@ tr.hidden-by-search {
     border-radius: 15px;
     padding: 12px 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
     position: relative;
 }
 
 .page-tab:hover {
     background: rgba(40, 60, 100, 0.8);
     border-color: rgba(0, 255, 255, 0.6);
-    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
 }
 
-/* AKTIVNÍ ZÁLOŽKA */
 .page-tab.active {
     background: linear-gradient(135deg, rgba(0, 150, 150, 0.8), rgba(0, 100, 100, 0.8));
     border-color: rgba(0, 255, 255, 0.9);
-   /* box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); */
 }
 
 .page-tab.active .tab-name {
@@ -878,7 +651,6 @@ tr.hidden-by-search {
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
 }
 
-/* NÁZEV ZÁLOŽKY */
 .tab-name {
     color: #00ffff;
     font-size: 1em;
@@ -888,7 +660,6 @@ tr.hidden-by-search {
     user-select: none;
 }
 
-/* TLAČÍTKO SMAZAT STRÁNKU */
 .tab-delete {
     background: rgba(180, 50, 50, 0.6);
     color: #fff;
@@ -898,7 +669,6 @@ tr.hidden-by-search {
     height: 28px;
     font-size: 0.9em;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -907,7 +677,6 @@ tr.hidden-by-search {
 .tab-delete:hover {
     background: rgba(200, 80, 80, 0.9);
     border-color: rgba(255, 150, 150, 0.8);
-    transform: scale(1.15);
     box-shadow: 0 0 10px rgba(255, 100, 100, 0.6);
 }
 
@@ -916,10 +685,50 @@ tr.hidden-by-search {
 }
 
 /* ========================================
-   📱 RESPONSIVITA PRO MOBIL
+   📱 MEDIA QUERIES - NOTEBOOK & INFINIX
    ======================================== */
 
 @media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    th, td {
+        padding: 10px 8px;
+        font-size: 0.9em;
+    }
+
+    .action-buttons button {
+        padding: 4px 8px;
+        font-size: 0.9em;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .tlacitka {
+        flex-direction: column;
+    }
+
+    .tlacitka button {
+        width: 100%;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-wrapper label {
+        min-width: auto;
+    }
+    
+    #clearSearchButton {
+        width: 100%;
+        border-radius: 10px;
+    }
+
     .pages-header {
         flex-direction: column;
         align-items: stretch;
@@ -955,7 +764,84 @@ tr.hidden-by-search {
     }
 }
 
+@media (max-width: 600px) {
+    .tlacitka {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 15px;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .tlacitka button {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+
+    #addLinkButton, 
+    #jirik-manual-opener-btn,
+    #clearAllLinksButton {
+        width: 100%;
+        height: auto;
+    }
+    
+    #clearAllLinksButton {
+        margin-top: 5px;
+    }
+}
+
 @media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .page-container {
+        padding: 20px 10px;
+    }
+
+    .form-container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    th:nth-child(1), td:nth-child(1) { 
+        width: 10%; 
+        min-width: 40px;
+        font-size: 0.85em;
+    }
+    
+    th:nth-child(2), td:nth-child(2) { 
+        width: 30%; 
+        min-width: 100px;
+        max-width: 150px;
+        word-break: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.85em;
+    }
+    
+    th:nth-child(3), td:nth-child(3) { 
+        width: 17%; 
+        min-width: 50px;
+        font-size: 0.85em;
+    }
+    
+    th:nth-child(4), td:nth-child(4) { 
+        width: 35%; 
+        min-width: 110px;
+    }
+
+    .action-buttons button {
+        padding: 2px 3px;
+        font-size: 0.7em;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 25px;
+    }
+
     .pages-navigation-section {
         padding: 15px;
     }
@@ -979,5 +865,3 @@ tr.hidden-by-search {
         font-size: 0.8em;
     }
 }
-
-
