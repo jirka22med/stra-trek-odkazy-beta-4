@@ -35,7 +35,7 @@ function setBackgroundForDevice() {
     // MĚLNICKÉ TAPETY
     const backgrounds = {
         desktop: 'https://tvuj-link-na-melnickou-tapetu-desktop.jpg',
-        infinix: 'https://tvuj-link-na-melnickou-tapetu-mobile.jpg'
+        infinix: 'https://img41.rajce.idnes.cz/d4102/19/19244/19244630_db82ad174937335b1a151341387b7af2/images/image_1024x1792.jpg?ver=0
     };
     
     let backgroundUrl = deviceInfo.isInfinixNote30 
