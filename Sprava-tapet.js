@@ -1,5 +1,5 @@
-// Sprava-tapet.js - MĚLNICKÁ TAPETA MODULE v2.0
-// 🖖 Více admirál Jiřík - Kompletně nový modul bez kolizí
+// Sprava-tapet.js - FULL PERFORMANCE MODE v2.1
+// 🖖 Více admirál Jiřík - Bez animací pro maximální výkon
 
 (function() {
     'use strict';
@@ -16,7 +16,6 @@
             mobile: 'https://img41.rajce.idnes.cz/d4102/19/19244/19244630_db82ad174937335b1a151341387b7af2/images/image_1024x1792.jpg?ver=0'
         },
         fallback: 'https://img41.rajce.idnes.cz/d4102/19/19244/19244630_db82ad174937335b1a151341387b7af2/images/image_1920x1080_2.jpg?ver=0',
-        fadeTransition: true,
         preloadImages: true
     };
 
@@ -144,7 +143,7 @@
 
         if (!forceRefresh && cachedUrl === tapetyUrl && cacheAge < 60) {
             log(`Použita CACHED tapeta (cache age: ${Math.round(cacheAge)} min)`, 'info');
-            await applyTapeta(cachedUrl, false);
+            applyTapeta(cachedUrl);
             return;
         }
 
@@ -166,7 +165,7 @@
         }
 
         // Aplikuj tapetu
-        await applyTapeta(tapetyUrl, true);
+        applyTapeta(tapetyUrl);
 
         // Ulož do cache
         saveToStorage('current_url', tapetyUrl);
@@ -175,9 +174,9 @@
     }
 
     // ========================================
-    // APLIKACE TAPETY NA DOM
+    // APLIKACE TAPETY NA DOM - BEZ ANIMACÍ
     // ========================================
-    async function applyTapeta(url, withFade = true) {
+    function applyTapeta(url) {
         const bgContainer = document.querySelector(CONFIG.containerSelector);
 
         if (!bgContainer) {
@@ -186,23 +185,9 @@
             return;
         }
 
-        // Fade efekt
-        if (withFade && CONFIG.fadeTransition) {
-            bgContainer.style.transition = 'opacity 0.5s ease-in-out';
-            bgContainer.style.opacity = '0';
-
-            await new Promise(resolve => setTimeout(resolve, 100));
-        }
-
-        // Nastav URL
+        // Přímé nastavení bez fade efektu
         bgContainer.src = url;
         bgContainer.alt = 'Mělnická tapeta';
-
-        // Fade zpět
-        if (withFade && CONFIG.fadeTransition) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-            bgContainer.style.opacity = '1';
-        }
 
         log(`Tapeta úspěšně nastavena: ${url}`, 'success');
     }
@@ -210,7 +195,7 @@
     // ========================================
     // OBNOVENÍ TAPETY
     // ========================================
-    async function restoreTapeta() {
+    function restoreTapeta() {
         log('Obnovuji uloženou tapetu...', 'info');
 
         const cachedUrl = loadFromStorage('current_url');
@@ -218,10 +203,10 @@
 
         if (cachedUrl) {
             log(`Nalezena cached tapeta: ${cachedDeviceType}`, 'success');
-            await applyTapeta(cachedUrl, false);
+            applyTapeta(cachedUrl);
         } else {
             log('Žádná cached tapeta, nastavuji novou...', 'warn');
-            await setTapeta();
+            setTapeta();
         }
     }
 
@@ -229,13 +214,13 @@
     // EVENT LISTENERS
     // ========================================
     function setupEventListeners() {
-        // Orientace (mobil)
+        // Orientace (mobil) - okamžitá reakce
         window.addEventListener('orientationchange', () => {
             log('Změna orientace detekována', 'info');
-            setTimeout(() => setTapeta(true), 300);
+            setTapeta(true);
         });
 
-        // Resize (desktop)
+        // Resize (desktop) - s debounce pro výkon
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
@@ -253,7 +238,7 @@
     // ========================================
     function init() {
         log('═══════════════════════════════════════', 'info');
-        log('MĚLNICKÁ TAPETA MODULE v2.0 - START', 'info');
+        log('MĚLNICKÁ TAPETA MODULE v2.1 - PERFORMANCE', 'info');
         log('═══════════════════════════════════════', 'info');
 
         // Kontrola DOM elementu
@@ -290,7 +275,7 @@
             localStorage.removeItem(CONFIG.prefix + 'device_info');
             log('Cache vymazána!', 'success');
         },
-        version: '2.0'
+        version: '2.1 - Performance Mode'
     };
 
     // ========================================
