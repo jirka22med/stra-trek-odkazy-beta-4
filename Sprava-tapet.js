@@ -34,7 +34,7 @@ function setBackgroundForDevice() {
     
     // MĚLNICKÉ TAPETY
     const backgrounds = {
-        desktop: 'https://tvuj-link-na-melnickou-tapetu-desktop.jpg',
+        desktop: 'https://img41.rajce.idnes.cz/d4102/19/19244/19244630_db82ad174937335b1a151341387b7af2/images/image_1920x1080_2.jpg?ver=0',
         infinix: 'https://img41.rajce.idnes.cz/d4102/19/19244/19244630_db82ad174937335b1a151341387b7af2/images/image_1024x1792.jpg?ver=0
     };
     
