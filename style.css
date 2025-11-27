@@ -68,10 +68,7 @@ h1 {
     gap: 20px;
 }
 
-.form-container:hover {
-    border-color: rgba(0, 255, 255, 0.5);
-    background: rgba(20, 30, 60, 0.5);
-}
+
 
 .form-container label {
     color: #00ffff;
@@ -121,10 +118,7 @@ h1 {
     letter-spacing: 1px;
 }
 
-.form-container button:hover, #clearAllLinksButton:hover {
-    background: rgba(0, 180, 180, 0.8);
-    border-color: rgba(0, 255, 255, 0.8);
-}
+
 
 .form-container button:active, #clearAllLinksButton:active {
     transform: scale(0.98);
@@ -137,10 +131,7 @@ h1 {
     display: block;
 }
 
-#clearAllLinksButton:hover {
-    background: rgba(200, 80, 80, 0.8);
-    border-color: rgba(255, 150, 150, 0.8);
-}
+
 
 /* Tabulka wrapper */
 .table-scroll-wrapper {
@@ -368,10 +359,7 @@ th {
     letter-spacing: 0.05em;
 }
 
-.copyright-footer:hover {
-    color: rgba(0, 255, 255, 1);
-    text-shadow: 0 0 14px rgba(0, 255, 255, 1);
-}
+
 
 .tlacitka {
     display: flex;
@@ -423,10 +411,7 @@ th {
     margin-bottom: 30px;
 }
 
-.search-container:hover {
-    border-color: rgba(0, 255, 255, 0.5);
-    background: rgba(20, 30, 60, 0.5);
-}
+
 
 .search-wrapper {
     display: flex;
@@ -476,10 +461,7 @@ th {
     height: 45px;
 }
 
-#clearSearchButton:hover {
-    background: rgba(200, 80, 80, 0.8);
-    border-color: rgba(255, 150, 150, 0.8);
-}
+
 
 #clearSearchButton:active {
     transform: scale(0.95);
@@ -523,10 +505,7 @@ tr.hidden-by-search {
     margin-bottom: 30px;
 }
 
-.pages-navigation-section:hover {
-    border-color: rgba(0, 255, 255, 0.5);
-    background: rgba(20, 30, 60, 0.5);
-}
+
 
 .pages-header {
     display: flex;
@@ -585,10 +564,7 @@ tr.hidden-by-search {
     white-space: nowrap;
 }
 
-#addPageButton:hover {
-    background: linear-gradient(135deg, #00cccc, #009999);
-    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
-}
+
 
 #addPageButton:active {
     transform: scale(0.97);
@@ -634,11 +610,7 @@ tr.hidden-by-search {
     position: relative;
 }
 
-.page-tab:hover {
-    background: rgba(40, 60, 100, 0.8);
-    border-color: rgba(0, 255, 255, 0.6);
-    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
-}
+
 
 .page-tab.active {
     background: linear-gradient(135deg, rgba(0, 150, 150, 0.8), rgba(0, 100, 100, 0.8));
@@ -674,11 +646,7 @@ tr.hidden-by-search {
     justify-content: center;
 }
 
-.tab-delete:hover {
-    background: rgba(200, 80, 80, 0.9);
-    border-color: rgba(255, 150, 150, 0.8);
-    box-shadow: 0 0 10px rgba(255, 100, 100, 0.6);
-}
+
 
 .tab-delete:active {
     transform: scale(0.95);
