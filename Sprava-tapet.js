@@ -9,3 +9,14 @@ function setBackgroundForDevice() {
     if (bgContainer) bgContainer.src = backgroundUrl;
     localStorage.setItem('background_url', backgroundUrl);
 }
+
+function restorePreviousBackground() {
+    const savedBackgroundUrl = localStorage.getItem('background_url');
+    const bgContainerImg = document.querySelector('.background-image-container img');
+    if (!bgContainerImg) return;
+    if (savedBackgroundUrl) {
+        bgContainerImg.src = savedBackgroundUrl;
+    } else {
+        setBackgroundForDevice();
+    }
+}
