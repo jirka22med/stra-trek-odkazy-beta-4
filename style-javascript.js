@@ -28,6 +28,8 @@
     const CSS = `
 /* style.css - FULL PERFORMANCE MODE - ŽÁDNÉ ANIMACE/PŘECHODY */
 
+/* style.css - FULL PERFORMANCE MODE - ŽÁDNÉ ANIMACE/PŘECHODY */
+
 * {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -44,7 +46,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100dvh;
+    height: 100%;
     z-index: -1;
 }
 
@@ -63,9 +65,8 @@ body {
     font-family: 'Orbitron', 'Courier New', monospace;
     color: #e0ffff;
     line-height: 1.6;
-    min-height: 100dvh;
+    min-height: 100vh;
     overflow-x: hidden;
-    padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .page-container {
@@ -73,7 +74,6 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 20px;
-    padding-bottom: 100px;
 }
 
 h1 {
@@ -85,6 +85,11 @@ h1 {
     letter-spacing: 3px;
     margin-top: -50px;
     font-weight: 900;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 120, 0, 0.6);
+    background: rgba(10, 20, 45, 0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 120, 0, 0.5);
 }
 
 .form-container {
@@ -98,6 +103,8 @@ h1 {
     flex-direction: column;
     gap: 20px;
 }
+
+
 
 .form-container label {
     color: #00ffff;
@@ -148,6 +155,8 @@ h1 {
     letter-spacing: 1px;
 }
 
+
+
 .form-container button:active, #clearAllLinksButton:active {
     transform: scale(0.98);
 }
@@ -159,22 +168,28 @@ h1 {
     display: block;
 }
 
+
+
 /* Tabulka wrapper */
 .table-scroll-wrapper {
     overflow-x: auto;
     margin-bottom: 5px;
     border-radius: 12px;
     -webkit-overflow-scrolling: touch;
+    background: rgba(10, 20, 45, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 2px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: transparent;
-    border-top: 2px solid rgba(0, 255, 255, 0.5);
-    border-bottom: 2px solid rgba(0, 255, 255, 0.5);
-    border-left: 2px solid rgba(0, 255, 255, 0.5);
-    border-right: 2px solid rgba(0, 255, 255, 0.5);
+    background: rgba(10, 20, 45, 0.92);
+    backdrop-filter: blur(8px);
+    border-top: 2px solid rgba(0, 255, 255, 0.6);
+    border-bottom: 2px solid rgba(0, 255, 255, 0.6);
+    border-left: 2px solid rgba(0, 255, 255, 0.6);
+    border-right: 2px solid rgba(0, 255, 255, 0.6);
     overflow: hidden;
 }
 
@@ -187,7 +202,7 @@ th, td {
     font-family: Arial, sans-serif;
     color: #00ffff;
     font-weight: 900;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
 th:last-child, td:last-child {
@@ -382,11 +397,13 @@ th {
     color: rgba(0, 255, 255, 0.75);
     font-size: 0.9em;
     border-top: 1px solid rgba(0, 255, 255, 0.25);
-    text-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 255, 255, 0.5);
+    background: rgba(10, 20, 45, 0.92);
+    backdrop-filter: blur(8px);
     letter-spacing: 0.05em;
 }
+
+
 
 .tlacitka {
     display: flex;
@@ -439,6 +456,8 @@ th {
     margin-bottom: 30px;
 }
 
+
+
 .search-wrapper {
     display: flex;
     align-items: center;
@@ -488,6 +507,8 @@ th {
     height: 45px;
 }
 
+
+
 #clearSearchButton:active {
     transform: scale(0.95);
 }
@@ -530,6 +551,8 @@ tr.hidden-by-search {
     padding: 25px;
     margin-bottom: 30px;
 }
+
+
 
 .pages-header {
     display: flex;
@@ -588,6 +611,8 @@ tr.hidden-by-search {
     white-space: nowrap;
 }
 
+
+
 #addPageButton:active {
     transform: scale(0.97);
 }
@@ -597,7 +622,8 @@ tr.hidden-by-search {
     gap: 10px;
     flex-wrap: wrap;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(5, 15, 35, 0.85);
+    backdrop-filter: blur(6px);
     border-radius: 15px;
     min-height: 60px;
     align-items: center;
@@ -624,13 +650,16 @@ tr.hidden-by-search {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(30, 50, 80, 0.6);
-    border: 2px solid rgba(0, 255, 255, 0.3);
+    background: rgba(30, 50, 80, 0.85);
+    backdrop-filter: blur(6px);
+    border: 2px solid rgba(0, 255, 255, 0.5);
     border-radius: 15px;
     padding: 12px 20px;
     cursor: pointer;
     position: relative;
 }
+
+
 
 .page-tab.active {
     background: linear-gradient(135deg, rgba(0, 150, 150, 0.8), rgba(0, 100, 100, 0.8));
@@ -650,6 +679,7 @@ tr.hidden-by-search {
     letter-spacing: 0.5px;
     cursor: pointer;
     user-select: none;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 255, 255, 0.4);
 }
 
 .tab-delete {
@@ -666,6 +696,8 @@ tr.hidden-by-search {
     justify-content: center;
 }
 
+
+
 .tab-delete:active {
     transform: scale(0.95);
 }
@@ -677,10 +709,6 @@ tr.hidden-by-search {
 @media (max-width: 768px) {
     h1 {
         font-size: 2em;
-    }
-
-    body {
-        padding-bottom: 80px;
     }
 
     th, td {
@@ -786,13 +814,8 @@ tr.hidden-by-search {
         font-size: 1.5em;
     }
 
-    body {
-        padding-bottom: 100px;
-    }
-
     .page-container {
         padding: 20px 10px;
-        padding-bottom: 120px;
     }
 
     .form-container {
