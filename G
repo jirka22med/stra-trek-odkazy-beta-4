@@ -1,4 +1,4 @@
-// style-javascript.js - CSS MODULE v1.0
+// style-javascript.js - CSS MODULE v1.0 
 // 🖖 Více admirál Jiřík - Kompletní CSS v JavaScriptu
 
 (function() {
